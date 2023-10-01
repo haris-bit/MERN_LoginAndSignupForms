@@ -1,7 +1,9 @@
+// Form.jsx
+
 import React, { useState } from "react";
+import axios from "axios";
 
 const Form = () => {
-
   const [formData, setFormData] = useState({
     firstName: "Mark",
     lastName: "Otto",
@@ -16,33 +18,22 @@ const Form = () => {
     setFormData({ ...formData, [name]: val });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-        const response = await fetch("/api/users", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            firstName: formData.firstName,
-            lastName: formData.lastName,
-            username: formData.username,
-            city: formData.city,
-            agreeToTerms: formData.agreeToTerms,
-          }),
-        });
-        if (response.ok) {
+    axios
+      .post("http://localhost:8000/api/users", formData) // Send formData directly
+      .then((response) => {
+        if (response.status === 200) {
           // Handle success, e.g., show a success message or redirect
           console.log("Form submitted successfully!");
         } else {
           // Handle error
-          const errorMessage = await response.text(); // Get the error message from the response
-          console.error("Error submitting form:", errorMessage);
+          console.error("Error submitting form:", response.data);
         }
-      } catch (error) {
+      })
+      .catch((error) => {
         console.error("Error submitting form:", error);
-      }
+      });
   };
 
   return (

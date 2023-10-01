@@ -43,10 +43,18 @@ app.post("/register", (req, res) => {
 });
 
 
-app.post("http://localhost:8000/api/users", (req, res) => {
+app.post("/api/users", (req, res) => {
   UserModel.create(req.body)
-    .then((Person) => res.json(Person))
-    .catch((err) => res.json(err));
+    .then((Person) => {
+      // Handle success and send the created user as a JSON response
+      res.json(Person);
+      console.log(Person); // This will log the created user
+    })
+    .catch((err) => {
+      // Handle error and send an error response as needed
+      console.error(err);
+      res.status(500).json({ error: "Internal Server Error" });
+    });
 });
 
 

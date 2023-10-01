@@ -7,6 +7,6 @@ const EmployeeSchema = new mongoose.Schema({
 })
 
 // firs is the table and second is the schema
-const EmployeeModel = mongoose.model("PakLabors", EmployeeSchema);
+const EmployeeModel = mongoose.model("Accounts", EmployeeSchema);
 
 module.exports = EmployeeModel;

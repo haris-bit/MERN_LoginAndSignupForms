@@ -4,7 +4,7 @@ function Home() {
   return (
     <div>
 
-      <h1>Home</h1>
+      <h1>Welcome to Pak Labor Home Page</h1>
       <p>Minature Vite + React demo website.</p>
       <p>It uses NodeJs, Express & MongoDB as a backend!</p>
 
