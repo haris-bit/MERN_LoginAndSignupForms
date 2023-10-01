@@ -2,8 +2,10 @@
 
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Form = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: "Mark",
     lastName: "Otto",
@@ -26,10 +28,12 @@ const Form = () => {
         if (response.status === 200) {
           // Handle success, e.g., show a success message or redirect
           console.log("Form submitted successfully!");
+          navigate('/');
         } else {
           // Handle error
           console.error("Error submitting form:", response.data);
         }
+        
       })
       .catch((error) => {
         console.error("Error submitting form:", error);
